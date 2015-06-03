@@ -1,0 +1,16 @@
+#loading dataset
+mydata<-read.table("household_power_consumption.txt",sep=';',header=TRUE,na.strings="?")
+#reformat the date
+mydata$Date <- as.Date(mydata$Date, format="%d/%m/%Y")
+#subset the data 
+data<-mydata[which(mydata$Date>='2007-02-01'& mydata$Date<='2007-02-02'),]
+#combine date and time in subsetting data
+datetime <- paste(as.Date(data$Date), data$Time)
+#convert string to date+time
+data$Datetime <- as.POSIXct(strptime(datetime,"%Y-%m-%d %H:%M:%S"))
+#plotting 2
+plot(data$Global_active_power~data$Datetime, type="l",ylab="Global Active Power (kilowatts)",xlab="")
+#save the plot
+dev.copy(png, file="plot2.png", height=480, width=480)
+dev.off()
+
