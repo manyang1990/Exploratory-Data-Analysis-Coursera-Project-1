@@ -7,6 +7,6 @@ Emi<-aggregate(NEI[,"Emissions"],by=list(NEI$year),FUN=sum)
 head(Emi)
 #Group.1 and x
 #plotting
-png(filename = "plot1.png")
+png(filename = "project2_plot1.png")
 with(Emi,plot(Group.1,x,main="Emission trend over the years",type="l",xlab="Year",ylab="Emissions in tons"))
 dev.off()
